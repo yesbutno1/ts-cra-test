@@ -20,11 +20,18 @@ function Container({ heading, children }: ContainerProps): ReactElement {
 Container.defaultProps = defaultContainerProps;
 
 // Functinal props
-function TextWithNumber({children}: {children: (num: number) => ReactNode
+function TextWithNumber({
+  header,
+  children,
+}: {
+  header?: (num: number) => ReactNode;
+  children: (num: number) => ReactNode;
 }) {
   const [state, stateSet] = React.useState<number>(1);
+
   return (
     <div>
+      {header && <h2>{header?.(state)}</h2>}
       <div>
         {children(state)}
       </div>
@@ -41,7 +48,8 @@ function App() {
       <Heading title="Hello"></Heading>
       <HeadingWithContent><strong>Hi!</strong></HeadingWithContent>
       <Container>Foo</Container>
-      <TextWithNumber>{(num: number) => <div> Today's number is {num} </div> }</TextWithNumber>
+      <TextWithNumber>
+        {(num: number) => <div> Today's number is {num} </div>}</TextWithNumber>
     </div>
   )
 };
