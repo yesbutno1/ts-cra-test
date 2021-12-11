@@ -41,6 +41,25 @@ function TextWithNumber({
     </div>
   )
 }
+
+// List
+function List<ListItem>({
+  items,
+  render,
+}: {
+  items: ListItem[],
+  render: (item: ListItem) => ReactNode
+  }) {
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={index}>
+          {render(item)}
+        </li>
+      ))}
+    </ul>
+  )
+}
  
 function App() {
   return (
@@ -49,7 +68,12 @@ function App() {
       <HeadingWithContent><strong>Hi!</strong></HeadingWithContent>
       <Container>Foo</Container>
       <TextWithNumber>
-        {(num: number) => <div> Today's number is {num} </div>}</TextWithNumber>
+        {(num: number) => <div> Today's number is {num} </div>}
+      </TextWithNumber>
+      <List
+        items={["Jack", "Lisa", "Oslo"]}
+        render={(item: string) => <div>{item.toLowerCase()}</div>}
+      ></List>
     </div>
   )
 };
