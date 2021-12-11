@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode } from 'react';
 import './App.css';
 
 // Conventinal props
-function Heading({ title }: { title: string; }) {
+function Heading({ title }: { title: string; }) { //properties with different types of props
   return <h1>{title}</h1>
 }
 function HeadingWithContent({ children }: { children: ReactNode }): ReactElement {
@@ -13,11 +13,11 @@ function HeadingWithContent({ children }: { children: ReactNode }): ReactElement
 const defaultContainerProps = {
   heading: <strong>My Heading</strong>
 };
-type ContainerProps = { children: ReactNode } & typeof defaultContainerProps
+type ContainerProps = { children: ReactNode } & typeof defaultContainerProps //calling defaultContainerProps
 function Container({ heading, children }: ContainerProps): ReactElement {
   return <div><h1>{heading}</h1>{children}</div>
 }
-Container.defaultProps = defaultContainerProps;
+Container.defaultProps = defaultContainerProps; // setting it
 
 // Functinal props
 function TextWithNumber({
@@ -43,12 +43,12 @@ function TextWithNumber({
 }
 
 // List
-function List<ListItem>({
+function List<ListItem>({ //defining a List Component as a "Generic"
   items,
   render,
 }: {
-  items: ListItem[],
-  render: (item: ListItem) => ReactNode
+  items: ListItem[], //expecting a List of items
+  render: (item: ListItem) => ReactNode //and returning it as ReactNode
   }) {
   return (
     <ul>
