@@ -60,6 +60,17 @@ function List<ListItem>({
     </ul>
   )
 }
+
+// Class component
+class MyHeader extends React.Component<{
+  title: ReactNode,
+}> {
+  render() {
+    return (
+      <h1>{this.props.title}</h1>
+    )
+  }
+}
  
 function App() {
   return (
@@ -74,6 +85,7 @@ function App() {
         items={["Jack", "Lisa", "Oslo"]}
         render={(item: string) => <div>{item.toLowerCase()}</div>}
       ></List>
+      <MyHeader title="There you go!" />
     </div>
   )
 };
